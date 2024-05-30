@@ -1,0 +1,1159 @@
+openapi: 3.0.0
+info:
+  title: Library Management System API
+  description: >
+    This is a sample API for a library management system.
+
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:8080
+paths:
+  /api/user/{id}:
+    description: Url to read and update the user resource.
+    get:
+      description: Operation to read user resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Student Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  username:
+                    type: string
+                    example: 984960325
+                  password:
+                    type: string
+                    example: 1234
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Student not found
+
+    put:
+      description: Operation to update the user resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Abhinav
+                username:
+                  type: string
+                  example: 9849603252
+                password:
+                  type: string
+                  example: 1234
+      responses:
+        '201':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                title: Student Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  username:
+                    type: string
+                    example: 9849603252
+                  password:
+                    type: string
+                    example: 1234
+        '409':
+          description: User already exists
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the user resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Successfully deleted
+          content:
+            application/json:
+              schema:
+                title: Student Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  username:
+                    type: string
+                    example: 9849603252
+                  password:
+                    type: string
+                    example: 1234
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Student not found
+
+  /api/user:
+    description: "Url to create user resource"
+    post:
+      description: "Operation to create the user resource"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Arun
+                username:
+                  type: string
+                  example: 9849603252
+                password:
+                  type: string
+                  example: 1234
+      responses:
+        '201':
+          description: "Successfully Created"
+          content:
+            application/json:
+              schema:
+                title: "Student Object"
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  username:
+                    type: string
+                    example: 9849603252
+                  password:
+                    type: string
+                    example: 1234
+        '409':
+          description: "User already exists"
+        '500':
+          description: "Internal Server Error"
+        '400':
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+  /api/ebook/{id}:
+    description: Url to read and update the ebook resource.
+    get:
+      description: Operation to read ebook resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Ebook Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  author_name:
+                    type: string
+                    example: 984960325
+                  total_pages:
+                    type: integer
+                    example: 1234
+                  image:
+                    type: string
+                    example: 1234
+                  pdf:
+                    type: string
+                    example: 1234
+                  price:
+                    type: integer
+                    example: 1234
+                  content:
+                    type: string
+                    example: 1234
+                  release_date:
+                    type: string
+                    example: 1234
+                  return_date:
+                    type: string
+                    example: 1234
+                  return_date_expected:
+                    type: string
+                    example: 1234
+                  section_id:
+                    type: integer
+                    example: 1234
+                  return_time:
+                    type: string
+                    example: 1234
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Ebook not found
+
+    put:
+      description: Operation to update the ebook resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Abhinav
+                author_name:
+                  type: string
+                  example: Abhinav ji
+                total_pages:
+                  type: integer
+                  example: 1234
+                image:
+                  type: string
+                  example: /static/pdf/sc.jpeg
+                pdf:
+                  type: string
+                  example: /static/pdf/sc.pdf
+                price:
+                  type: integer
+                  example: 1234
+                content:
+                  type: string
+                  example: Very good
+                release_date:
+                  type: string
+                  example: "2024-01-29T12:00:00.00Z"
+                return_date:
+                  type: string
+                  example: "2024-01-29T12:00:00.00Z"
+                return_date_expected:
+                  type: string
+                  example: "2024-01-29T12:00:00.00Z"
+                section_id:
+                  type: integer
+                  example: 1
+                section_name:
+                  type: string
+                  example: bvmh
+                return_time:
+                  type: string
+                  example: "2024-01-29T12:00:00.00Z"
+      responses:
+        '201':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                title: Ebook Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  author_name:
+                    type: string
+                    example: 9849603252
+                  total_pages:
+                    type: integer
+                    example: 1234
+                  image:
+                    type: string
+                    example: /static/pdf/sc.jpeg
+                  pdf:
+                    type: string
+                    example: /static/pdf/sc.pdf
+                  price:
+                    type: integer
+                    example: 1234
+                  content:
+                    type: string
+                    example: 1234
+                  release_date:
+                    type: string
+                    example: "2024-01-29T12:00:00.00Z"
+                  return_date:
+                    type: string
+                    example: "2024-01-29T12:00:00.00Z"
+                  return_date_expected:
+                    type: string
+                    example: "2024-01-29T12:00:00.00Z"
+                  section_id:
+                    type: integer
+                    example: 1234
+                  section_name:
+                    type: string
+                    example: bvmh
+                  return_time:
+                    type: string
+                    example: "2024-01-29T12:00:00.00Z"
+        '409':
+          description: Ebook already exists
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+    delete:
+      description: Operation to delete the ebook resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Successfully deleted
+          content:
+            application/json:
+              schema:
+                title: Ebook Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  author_name:
+                    type: string
+                    example: 9849603252
+                  total_pages:
+                    type: integer
+                    example: 1234
+                  image:
+                    type: string
+                    example: /static/pdf/sc.jpeg
+                  pdf:
+                    type: string
+                    example: /static/pdf/sc.pdf
+                  price:
+                    type: integer
+                    example: 1234
+                  content:
+                    type: string
+                    example: 1234
+                  release_date:
+                    type: string
+                    example: "2024-01-29T12:00:00Z"
+                  return_date:
+                    type: string
+                    example: "2024-01-29T12:00:00Z"
+                  return_date_expected:
+                    type: string
+                    example: "2024-01-29T12:00:00Z"
+                  section_id:
+                    type: integer
+                    example: 1234
+                  return_time:
+                    type: string
+                    example: "2024-01-29T12:00:00Z"
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Ebook not found
+
+  /api/ebook:
+    description: "Url to create ebook resource" 
+    post:
+      description: "Operation to create the ebook resource"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Arun
+                author_name:
+                  type: string
+                  example: 9849603252
+                total_pages:
+                  type: integer
+                  example: 1234
+                image:
+                  type: string
+                  example: /static/pdf/sc.jpeg
+                pdf:
+                  type: string
+                  example: /static/pdf/sc.pdf
+                price:
+                  type: integer
+                  example: 1234
+                content:
+                  type: string
+                  example: 1234
+                release_date:
+                  type: string
+                  example: "2024-01-29T12:00:00.00Z"
+                return_date:
+                  type: string
+                  example: "2024-01-29T12:00:00.00Z"
+                return_date_expected:
+                  type: string
+                  example: "2024-01-29T12:00:00.00Z"
+                section_id:
+                  type: integer
+                  example: 1234
+                section_name:
+                  type: string
+                  example: Horror
+                return_time:
+                  type: string
+                  example: "2024-01-29T12:00:00.00Z"
+      responses:
+        '201':
+          description: "Successfully Created"
+          content:
+            application/json:
+              schema:
+                title: "Ebook Object"
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  author_name:
+                    type: string
+                    example: 9849603252
+                  total_pages:
+                    type: integer
+                    example: 1234
+                  image:
+                    type: string
+                    example: /static/pdf/sc.jpeg
+                  pdf:
+                    type: string
+                    example: /static/pdf/sc.pdf
+                  price:
+                    type: integer
+                    example: 1234
+                  content:
+                    type: string
+                    example: 1234
+                  release_date:
+                    type: string
+                    example: "2024-01-29T12:00:00.00Z"
+                  return_date:
+                    type: string
+                    example: "2024-01-29T12:00:00.00Z"
+                  return_date_expected:
+                    type: string
+                    example: "2024-01-29T12:00:00.00Z"
+                  section_id:
+                    type: integer
+                    example: 1234
+                  return_time:
+                    type: string
+                    example: "2024-01-29T12:00:00.00Z"
+        '409':
+          description: "Ebook already exists"
+        '500':
+          description: "Internal Server Error"
+        '400':
+          description: "Bad request"  
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+  /api/section/{id}:
+    description: Url to read and update the section resource.
+    get:
+      description: Operation to read section resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Section Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  description:
+                    type: string
+                    example: 984960325
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Section not found
+
+    put:
+      description: Operation to update the section resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Arun
+                description:
+                  type: string
+                  example: 9849603252
+                date_created:
+                  type: string
+                  format: date-time 
+                  example: "2024-01-29T12:00:00Z"
+      responses:
+        '201':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                title: Section Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  description:
+                    type: string
+                    example: 9849603252
+                  date_created:
+                    type: string
+                    format: date-time
+                    example: "2024-01-29T12:00:00Z"
+        '409':
+          description: Section already exists
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the section resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Successfully deleted
+          content:
+            application/json:
+              schema:
+                title: Section Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  description:
+                    type: string
+                    example: 9849603252
+                  date_created:
+                    type: string
+                    example: "2024-01-30T12:00:00Z"
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Section not found
+
+  /api/section:
+    description: "Url to create section resource"
+    post:
+      description: "Operation to create the section resource"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Arun
+                description:
+                  type: string
+                  example: "This is a section description."
+                date_created:
+                  type: string
+                  example: 2024-12-11T12:00:00.0Z
+      responses:
+        '201':
+          description: "Successfully Created"
+          content:
+            application/json:
+              schema:
+                title: "Section Object"
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  description:
+                    type: string
+                    example: "This is a section description."
+                  date_created:
+                    type: string
+                    example: 2024-12-11T12:00:00.0Z
+        '409':
+          description: "Section already exists"
+        '500':
+          description: "Internal Server Error"
+        '400':
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+  /api/librarian/{id}:
+    description: Url to read and update the librarian resource.
+    get:
+      description: Operation to read librarian resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Librarian Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  username:
+                    type: string
+                    example: 984960325
+                  password:
+                    type: string
+                    example: 1234
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Librarian not found
+
+    put:
+      description: Operation to update the librarian resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Abhinav
+                username:
+                  type: string
+                  example: 9849603252
+                password:
+                  type: string
+                  example: 1234
+      responses:
+        '201':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                title: Librarian Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  username:
+                    type: string
+                    example: 9849603252
+                  password:
+                    type: string
+                    example: 1234
+        '409':
+          description: Librarian already exists
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the librarian resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Successfully deleted
+          content:
+            application/json:
+              schema:
+                title: Librarian Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Arun
+                  username:
+                    type: string
+                    example: 9849603252
+                  password:
+                    type: string
+                    example: 1234
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Librarian not found
+
+  
+  /api/review/{id}:
+    description: Url to read and update the review resource.
+    get:
+      description: Operation to read review resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Review Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  review:
+                    type: string
+                    example: Arun
+                  rating:
+                    type: integer
+                    example: 984960325
+                  ebook_id:
+                    type: integer
+                    example: 1234
+                  user_id:
+                    type: integer
+                    example: 1234
+                  user_review:
+                    type: string
+                    example: 1234
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Review not found
+
+    put:
+      description: Operation to update the review resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                review:
+                  type: string
+                  example: Abhinav
+                rating:
+                  type: integer
+                  example: 9849603252
+                ebook_id:
+                  type: integer
+                  example: 1234
+                user_id:
+                  type: integer
+                  example: 1234
+                user_review:
+                  type: string
+                  example: 1234
+      responses:
+        '201':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                title: Review Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  review:
+                    type: string
+                    example: Arun
+                  rating:
+                    type: integer
+                    example: 9849603252
+                  ebook_id:
+                    type: integer
+                    example: 1234
+                  user_id:
+                    type: integer
+                    example: 1234
+                  user_review:
+                    type: string
+                    example: 1234
+        '409':
+          description: Review already exists
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the review resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Successfully deleted
+          content:
+            application/json:
+              schema:
+                title: Review Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  review:
+                    type: string
+                    example: Arun
+                  rating:
+                    type: integer
+                    example: 9849603252
+                  ebook_id:
+                    type: integer
+                    example: 1234
+                  user_id:
+                    type: integer
+                    example: 1234
+                  user_review:
+                    type: string
+                    example: 1234
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Review not found
+
+  /api/review:
+    description: "Url to create review resource"
+    post:
+      description: "Operation to create the review resource"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                  example: 9849603252
+                ebook_id:
+                  type: integer
+                  example: 1234
+                user_id:
+                  type: integer
+                  example: 1234
+                user_review:
+                  type: string
+                  example: 1234
+      responses:
+        '201':
+          description: "Successfully Created"
+          content:
+            application/json:
+              schema:
+                title: "Review Object"
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  rating:
+                    type: integer
+                    example: 9849603252
+                  ebook_id:
+                    type: integer
+                    example: 1234
+                  user_id:
+                    type: integer
+                    example: 1234
+                  user_review:
+                    type: string
+                    example: 1234
+        '409':
+          description: "Review already exists"
+        '500':
+          description: "Internal Server Error"
+        '400':
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+  /api/book_request/{id}:
+    description: Url to read and update the bookrequest resource.
+    get:
+      description: Operation to read book request resource
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: BookRequest Object
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 10
+                  request_id:
+                    type: string
+                    example: "1_5_20240129074302_d185fb6e"
+                  request_time:
+                    type: string
+                    example: "2024-01-29T13:13:02.170837"
+                  return_time:
+                    type: string
+                    example: "2024-01-31T13:13:00"
+                  status:
+                    type: string
+                    example: "requested"
+                  user_id:
+                    type: integer
+                    example: 1
+                  ebook_id:
+                    type: integer
+                    example: 5
+                  section_id:
+                    type: integer
+                    example: 0
+                  is_requested:
+                    type: boolean
+                    example: true
+                  is_returned:
+                    type: boolean
+                    example: false
+                  is_revoked:
+                    type: boolean
+                    example: false
+                  is_issued:
+                    type: boolean
+                    example: false
+        '500':
+          description: Internal Server Error
+        '404':
+          description: BookRequest not found
+
+
+
+#############################################################   API Ended   ########################################################

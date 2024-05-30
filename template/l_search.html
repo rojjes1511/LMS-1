@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Librarian Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #ccc;
+      }
+
+      .navbar {
+        background-color: #81c1ef;
+        height: 50px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: 0 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        z-index: 2;
+        color: rgb(20, 1, 1);
+      }
+      .navbar a {
+        color: rgb(20, 1, 1);
+      }
+      .sidebar {
+        background-color: #81c1ef;
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        top: 50px;
+        left: 0;
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top: 0;
+        z-index: 1;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        width: 100%;
+        padding: 0;
+        color: black;
+      }
+
+      .sidebar a {
+        color: rgb(11, 3, 3);
+        text-decoration: none;
+        display: block;
+        margin-bottom: 10px;
+        padding: 6px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .content {
+        margin-top: 50px;
+        margin-left: 200px; /* Adjust this value based on your sidebar width */
+        padding: 10px;
+      }
+      .card-body {
+        /* Adjust this value based on your sidebar width */
+        padding: 10px;
+        margin: 1px;
+      }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        background-color: #81c1ef;
+        color: rgb(230, 15, 15);
+        text-align: center;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="container-fluid">
+        <a class="fw-bold fs-5">Welcome ABHINAV</a>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="/librarian_login/librarian/l_ebook">E-Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/librarian_login/librarian/l_section">Sections</a>
+          </li>
+          <form
+            class="d-flex"
+            action="/l_search"
+            method="get"
+          >
+            <input
+              class="form-control me-2"
+              type="search"
+              name="query"
+              placeholder="Enter your search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <ul class="list-unstyled">
+        <br />
+        <br />
+        <br />
+        <li>
+          <a href="/librarian/1">Home</a>
+        </li>
+        
+        <li>
+          <a href="/issuedbooks">Issueed Books</a>
+        </li>
+        <li>
+          <a href="/librarian_login/librarian/l_returned">Returnd Books</a>
+        </li>
+        <li>
+          <a href="/librarian_login/librarian/l_revoked">Revocked books</a>
+        </li>
+        <li>
+          <a href="/current_status_librarian">Current Status</a>
+        </li>
+
+        <li class="nav-item dropend">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Add/Edit/Delete
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                href="/librarian_login/librarian/add_book"
+                >Add E-BOOKS</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="/librarian_login/librarian/add_section"
+                >ADD Sections</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="/librarian_login/librarian/edit_selection"
+                >Edit E-BOOKS</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="/librarian_login/librarian/edit_selection"
+                >Edit Sections</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="/librarian_login/librarian/delet_book"
+                >Delete E-BOOKS</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="/librarian_login/librarian/delet_section"
+                >Delete Sections</a
+              >
+            </li>
+          </ul>
+          <li>
+            <a href="/l_stat">Stat</a>
+          </li>
+          <br />
+          <br />
+          <br />
+        </li>
+        <li class="nav-item">
+          <a type="button" class="btn btn-danger" href="/librarian_login"
+            >Logout</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div class="content">
+        <h2>Search Results for "{{ query }}"</h2>
+        
+        {% if books or sections %}
+            <div class="row">
+                {% for book in books %}
+                    <div class="col-md-4">
+                        <div class="card" style="width: 13rem;">
+                            <img src="{{ book.image }}" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ book.name }}</h5>
+                                <p class="card-text">{{ book.content }}</p>
+                                <a href="#" class="btn btn-primary">Read</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+    
+                {% for section in sections %}
+                    <div class="col-md-4">
+                        <div class="card" style="width: 13rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ section.name }}</h5>
+                                <p class="card-text">{{ section.description }}</p>
+                                <a href="#" class="btn btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+    <div class="footer">
+      <p>&copy; 2024 Librarian {{ (librarian.l_name) }} Dashboard</p>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

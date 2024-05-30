@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>
+      body {
+          text-align: center;
+          background-image: url('https://cdn.wallpapersafari.com/46/73/WiHLIx.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-attachment: fixed;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          height: auto;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: #e207fa;
+      }
+
+      .login-container {
+          background-color: #9beeff;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          max-width: 400px;
+          margin: 0 auto;
+      }
+
+      h3 {
+          color: #333;
+          font-size: 24px;
+          margin-bottom: 20px;
+      }
+
+      .container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      .row {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin-bottom: 16px;
+      }
+
+      label {
+          margin-bottom: 8px;
+          color: #555;
+      }
+
+      input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 8px;
+      }
+
+      button {
+          background-color: #4CAF50;
+          color: #ffb2b2;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          margin-top: 16px;
+      }
+
+      button:hover {
+          background-color: #45a049;
+      }
+
+      .user-icon {
+          display: inline-block;
+          font-size: 36px;
+          margin-bottom: 20px;
+          color: #4CAF50;
+      }
+
+      .register-link {
+          margin-top: 16px;
+          color: #555;
+      }
+
+      .register-link a {
+          color: #4CAF50;
+      }
+  </style>
+</head>
+<body>
+    <div class="login-container">
+        <form action="/librarian_login/librarian_registration" method="POST">
+        <div class="user-icon">&#128100;</div>
+        <h3>LIBRARIAN REGISTRATION</h3>
+
+        <div class="container">
+            <div class="row">
+                <label for="username"><b>Username:- </b></label>
+                <input type="text" placeholder="Enter Username" name="l_username" required />
+            </div>
+            <div class="row">
+                <label for="name"><b>Name:-</b></label>
+                <input type="text" placeholder="Ente Name" name="l_name" required />
+            </div>
+            <div class="row">
+                <label for="password"><b>Password:-</b></label>
+                <input type="password" placeholder="Enter Password" name="l_password" required />
+            </div>
+            <button type="submit">Login</button>
+            <div class="registerd-link">
+                <p>New user? <a href="/librarian_login">Go to Login</a></p>
+            </div>
+        </form>
+        </div>
+    </div>
+</body>
+</html>
